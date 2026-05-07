@@ -91,7 +91,7 @@ function OrbitDiagram({ active }: { active: boolean }) {
 
   return (
     <div className="relative w-full aspect-square">
-      <svg viewBox="0 0 700 700" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 700 700" className="w-full h-full overflow-visible" xmlns="http://www.w3.org/2000/svg">
 
         {/* Dashed outer ring */}
         <circle cx={cx} cy={cy} r={R + 45} fill="none" stroke="#0b3b32" strokeOpacity="0.06" strokeWidth="1" strokeDasharray="4 8" />
