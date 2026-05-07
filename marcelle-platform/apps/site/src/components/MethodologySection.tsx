@@ -172,6 +172,24 @@ function OrbitDiagram({ active }: { active: boolean }) {
         {/* Center circle (bg for logo) */}
         <circle cx={cx} cy={cy} r={52} fill="#0b3b32" />
 
+        <defs>
+          <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feComponentTransfer in="blur" result="glowLayer">
+               <feFuncA type="linear" slope="0.4"/>
+            </feComponentTransfer>
+            <feMerge>
+              <feMergeNode in="glowLayer"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Traveling particle - movido para cá para passar POR TRÁS das bolas das fases */}
+        {active && (
+          <circle cx={particlePos.x} cy={particlePos.y} r={6} fill="#E8341A" opacity={0.85} />
+        )}
+
         {/* Phase nodes */}
         {phases.map((phase, i) => {
           const pos = nodePos(phase.angle)
@@ -195,17 +213,18 @@ function OrbitDiagram({ active }: { active: boolean }) {
                 opacity={0.35}
               />
 
-              {/* Node */}
+              {/* Node (Bola Maior) */}
               {active ? (
                 <motion.circle
                   cx={pos.x} cy={pos.y} r={r}
                   fill={phase.color}
+                  filter="url(#glow)"
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.3 + i * 0.2, duration: 0.5, ease: 'backOut' }}
                 />
               ) : (
-                <circle cx={pos.x} cy={pos.y} r={r} fill={phase.color} opacity={0} />
+                <circle cx={pos.x} cy={pos.y} r={r} fill={phase.color} filter="url(#glow)" opacity={0} />
               )}
 
               {/* Number */}
@@ -248,11 +267,6 @@ function OrbitDiagram({ active }: { active: boolean }) {
             </g>
           )
         })}
-
-        {/* Traveling particle */}
-        {active && (
-          <circle cx={particlePos.x} cy={particlePos.y} r={6} fill="#E8341A" opacity={0.85} />
-        )}
       </svg>
 
       {/* Logo overlay — centered over the dark circle */}

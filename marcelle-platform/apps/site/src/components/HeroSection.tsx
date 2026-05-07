@@ -230,7 +230,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* Bottom marquee strip */}
-        <div className="relative z-10 border-t border-teal/10 bg-teal/5 py-3 overflow-hidden">
+        <div className="relative z-10 border-y border-teal/10 bg-sage py-3 overflow-hidden">
           <div className="marquee-track select-none">
             {[...marqueeItems, ...marqueeItems].map((item, i) => (
               <span
