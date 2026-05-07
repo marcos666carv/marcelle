@@ -1,8 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { Star } from 'lucide-react'
+import { useRef } from 'react'
 
 const testimonials = [
   {
@@ -10,175 +9,148 @@ const testimonials = [
     role: 'designer, 32 anos',
     text: 'eu achava que meu problema com dinheiro era falta de disciplina. depois de trabalhar com a marcelle, entendi que era medo. essa mudança de perspectiva mudou tudo.',
     result: 'quitou r$ 28k em dívidas em 14 meses',
-    initials: 'AP',
-    color: 'bg-coral',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
   },
   {
     name: 'fernanda m.',
     role: 'professora, 41 anos',
     text: 'nunca imaginei que eu poderia juntar dinheiro para uma reserva de emergência. hoje tenho 6 meses de reserva e estou começando a investir.',
     result: 'construiu reserva de r$ 18k',
-    initials: 'FM',
-    color: 'bg-electric',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80',
   },
   {
     name: 'carla r.',
     role: 'empreendedora, 38 anos',
     text: 'a marcelle conseguiu traduzir questões financeiras complexas de forma simples e humana. sem aquela pressão de que você precisa ser perfeita.',
     result: 'lucro cresceu 40% após reorganização',
-    initials: 'CR',
-    color: 'bg-teal',
+    image: 'https://images.unsplash.com/photo-1531123897727-8f129e1bfa82?auto=format&fit=crop&w=600&q=80',
   },
   {
     name: 'juliana t.',
     role: 'enfermeira, 29 anos',
     text: 'cheguei endividada e com muito medo de olhar para as contas. em 8 meses, não só quitei as dívidas como finalmente consegui comprar meu apartamento.',
     result: 'realizou o sonho do apartamento próprio',
-    initials: 'JT',
-    color: 'bg-salmon',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
   },
   {
     name: 'beatriz l.',
     role: 'advogada, 35 anos',
-    text: 'ganhava bem e não entendia por que nunca sobrava nada. o processo da marcelle me ajudou a identificar gastos invisíveis e criar um estilo de vida financeiro que faz sentido pra mim.',
+    text: 'ganhava bem e não entendia por que nunca sobrava nada. o processo me ajudou a identificar gastos invisíveis e criar um estilo de vida financeiro que faz sentido.',
     result: 'reduziu gastos em 35% sem sofrimento',
-    initials: 'BL',
-    color: 'bg-amber',
+    image: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&w=600&q=80',
   },
 ]
 
 export function TestimonialsSection() {
-  const [current, setCurrent] = useState(0)
-  const t = testimonials[current]!
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const scrollNext = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 400, behavior: 'smooth' })
+    }
+  }
+
+  const scrollPrev = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -400, behavior: 'smooth' })
+    }
+  }
 
   return (
-    <section id="depoimentos" className="py-28 bg-linen overflow-hidden">
-      <div className="px-6 md:px-16 lg:px-24">
-
+    <section id="depoimentos" className="py-28 bg-teal overflow-hidden">
+      <div className="px-6 md:px-16 lg:px-24 mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+        
         {/* Header */}
         <motion.div
-          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <div>
-            <p className="text-xs font-semibold tracking-widest text-coral/70 lowercase mb-3">depoimentos</p>
-            <h2 className="font-sans text-4xl md:text-5xl font-bold text-teal leading-tight">
-              histórias reais
-              <br />
-              <em className="italic text-coral">de transformação</em>
-            </h2>
-          </div>
-
-          {/* Nav arrows */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1))}
-              className="w-11 h-11 rounded-full border border-border flex items-center justify-center text-teal hover:bg-coral hover:text-white hover:border-coral transition-all duration-200 text-lg"
-              aria-label="Anterior"
-            >
-              ←
-            </button>
-            <button
-              onClick={() => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1))}
-              className="w-11 h-11 rounded-full border border-border flex items-center justify-center text-teal hover:bg-coral hover:text-white hover:border-coral transition-all duration-200 text-lg"
-              aria-label="Próximo"
-            >
-              →
-            </button>
-          </div>
+          <p className="text-xs font-semibold tracking-widest text-coral lowercase mb-3">depoimentos</p>
+          <h2 className="font-sans text-4xl md:text-5xl font-bold text-cream leading-tight">
+            histórias reais
+            <br />
+            <em className="italic text-coral/90">de transformação</em>
+          </h2>
         </motion.div>
 
-        {/* Main testimonial */}
-        <motion.div
-          key={current}
-          className="grid grid-cols-1 lg:grid-cols-5 gap-5 mb-8"
-          initial={{ opacity: 0, x: 32 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.45, ease: 'easeOut' }}
+        {/* Nav arrows */}
+        <motion.div 
+          className="flex items-center gap-3"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
         >
-          {/* Large quote card */}
-          <div className="lg:col-span-3 bg-teal rounded-3xl p-10 relative overflow-hidden">
-            {/* Decorative symbol */}
-            <div className="absolute -top-6 -left-2 font-sans text-[160px] text-cream/4 leading-none select-none pointer-events-none">
-              "
-            </div>
-
-            {/* Stars */}
-            <div className="flex gap-1 mb-6">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={14} className="fill-coral text-coral" />
-              ))}
-            </div>
-
-            <p className="font-sans text-xl md:text-2xl text-cream leading-relaxed mb-8 italic">
-              "{t.text}"
-            </p>
-
-            {/* Author */}
-            <div className="flex items-center gap-4">
-              <div className={`w-12 h-12 rounded-full ${t.color} flex items-center justify-center flex-shrink-0`}>
-                <span className="text-sm font-black text-white">{t.initials}</span>
-              </div>
-              <div>
-                <p className="font-semibold text-cream lowercase">{t.name}</p>
-                <p className="text-xs text-cream/45 lowercase">{t.role}</p>
-              </div>
-            </div>
-
-            {/* Checker accent corner */}
-            <div className="absolute bottom-0 right-0 w-20 h-20 checker-coral opacity-10 rounded-tl-3xl" />
-          </div>
-
-          {/* Side panels */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
-            {/* Result card */}
-            <div className="bg-coral rounded-3xl p-8 flex-1 relative overflow-hidden">
-              <p className="text-xs font-bold tracking-widest text-white/60 lowercase mb-3">resultado</p>
-              <p className="font-sans text-2xl font-bold text-white leading-snug lowercase">{t.result}</p>
-              <div className="absolute -bottom-4 -right-4 text-[80px] text-white/10 font-black select-none">✦</div>
-            </div>
-
-            {/* Social proof */}
-            <div className="bg-linen border border-teal/8 rounded-3xl p-6">
-              <div className="flex items-center gap-3 mb-3">
-                {testimonials.map((test, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrent(i)}
-                    className={`w-8 h-8 rounded-full text-xs font-black transition-all duration-200 ${
-                      i === current
-                        ? `${test.color} text-white scale-110`
-                        : 'bg-teal/10 text-teal/40 hover:bg-teal/20'
-                    }`}
-                  >
-                    {test.initials}
-                  </button>
-                ))}
-              </div>
-              <p className="text-xs text-teal/45 leading-relaxed lowercase">
-                cada jornada é única. resultados variam de acordo com a situação e o comprometimento de cada pessoa.
-              </p>
-            </div>
-          </div>
+          <button
+            onClick={scrollPrev}
+            className="w-12 h-12 rounded-full border border-cream/20 flex items-center justify-center text-cream hover:bg-cream hover:text-teal transition-all duration-300"
+            aria-label="Anterior"
+          >
+            ←
+          </button>
+          <button
+            onClick={scrollNext}
+            className="w-12 h-12 rounded-full border border-cream/20 flex items-center justify-center text-cream hover:bg-cream hover:text-teal transition-all duration-300"
+            aria-label="Próximo"
+          >
+            →
+          </button>
         </motion.div>
-
-        {/* Dot indicators */}
-        <div className="flex items-center justify-center gap-2">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all duration-300 ${
-                i === current ? 'w-8 h-2 bg-coral' : 'w-2 h-2 bg-border hover:bg-coral/30'
-              }`}
-              aria-label={`Depoimento ${i + 1}`}
-            />
-          ))}
-        </div>
       </div>
+
+      {/* Carousel Track */}
+      <motion.div 
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-6 md:px-16 lg:px-24 pb-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        {testimonials.map((t, i) => (
+          <div 
+            key={i} 
+            className="relative flex-shrink-0 w-[85vw] sm:w-[380px] h-[540px] rounded-3xl overflow-hidden snap-center group bg-[#051a16]"
+          >
+            {/* Background Image */}
+            <img 
+              src={t.image} 
+              alt={t.name} 
+              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" 
+            />
+            
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-teal via-teal/80 to-transparent" />
+            
+            {/* Content */}
+            <div className="absolute inset-0 p-8 flex flex-col justify-end">
+              {/* Quote Icon */}
+              <svg className="w-8 h-8 text-coral mb-5 opacity-90" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+              </svg>
+              
+              <p className="font-sans text-lg md:text-xl text-cream font-medium leading-relaxed mb-6">
+                "{t.text}"
+              </p>
+
+              <div className="flex flex-col gap-1.5 border-t border-cream/10 pt-5 mt-2">
+                <p className="font-bold text-white lowercase">— {t.name}</p>
+                <p className="text-sm text-cream/60 lowercase">{t.role}</p>
+              </div>
+
+              {/* Result Badge */}
+              <div className="mt-4 self-start bg-coral/20 backdrop-blur-sm border border-coral/30 px-3 py-1.5 rounded-lg">
+                <p className="text-xs font-bold text-coral lowercase">{t.result}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Spacer to allow scrolling past the last item symmetrically */}
+        <div className="w-[1px] flex-shrink-0" />
+      </motion.div>
     </section>
   )
 }
