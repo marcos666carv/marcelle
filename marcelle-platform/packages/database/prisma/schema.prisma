@@ -1,0 +1,330 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// AUTH & USERS
+// ============================================================
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  avatarUrl String?
+  password  String   // hashed
+  role      UserRole @default(CLIENT)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  client       Client?
+  collaborator Collaborator?
+  sessions     Session[]
+  notifications Notification[]
+  pushSubs     PushSubscription[]
+
+  @@index([email])
+  @@index([role])
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  CLIENT
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  token        String   @unique
+  refreshToken String   @unique
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([refreshToken])
+  @@index([userId])
+}
+
+// ============================================================
+// COLLABORATORS
+// ============================================================
+
+model Collaborator {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  permissions String[] @default([])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clients Client[]
+  tasks   Task[]
+  plans   Plan[]
+  content Content[]
+}
+
+// ============================================================
+// CLIENTS (basic - will be expanded in Phase 2)
+// ============================================================
+
+model Client {
+  id               String           @id @default(cuid())
+  userId           String           @unique
+  collaboratorId   String?
+  lifecyclePhase   LifecyclePhase   @default(SILENT_CHAOS)
+  phone            String?
+  birthDate        DateTime?
+  occupation       String?
+  onboardingStatus OnboardingStatus @default(PENDING)
+  internalNotes    String?          @db.Text
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  collaborator Collaborator? @relation(fields: [collaboratorId], references: [id])
+  tasks        Task[]
+  plans        Plan[]
+  anamneses    Anamnesis[]
+
+  @@index([collaboratorId])
+  @@index([lifecyclePhase])
+}
+
+enum LifecyclePhase {
+  SILENT_CHAOS
+  INITIAL_CLARITY
+  ACTIVE_CONSTRUCTION
+  EXPANSION_FREEDOM
+  FULLNESS_AMBASSADOR
+}
+
+enum OnboardingStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+// ============================================================
+// ANAMNESE (Phase 2)
+// ============================================================
+
+model Anamnesis {
+  id          String          @id @default(cuid())
+  clientId    String
+  title       String          @default("Anamnese Financeira")
+  status      AnamnesisStatus @default(PENDING)
+  completedAt DateTime?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  client    Client            @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  sections  AnamnesisSection[]
+  responses AnamnesisResponse[]
+
+  @@index([clientId])
+  @@index([status])
+}
+
+enum AnamnesisStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+model AnamnesisSection {
+  id          String   @id @default(cuid())
+  anamnesisId String
+  title       String
+  description String?  @db.Text
+  order       Int
+  createdAt   DateTime @default(now())
+
+  anamnesis Anamnesis        @relation(fields: [anamnesisId], references: [id], onDelete: Cascade)
+  fields    AnamnesisField[]
+
+  @@index([anamnesisId])
+}
+
+model AnamnesisField {
+  id          String    @id @default(cuid())
+  sectionId   String
+  label       String
+  description String?   @db.Text
+  type        FieldType
+  required    Boolean   @default(false)
+  options     Json?     // for SELECT/MULTISELECT types
+  order       Int
+  createdAt   DateTime  @default(now())
+
+  section   AnamnesisSection    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  responses AnamnesisResponse[]
+
+  @@index([sectionId])
+}
+
+enum FieldType {
+  TEXT
+  TEXTAREA
+  NUMBER
+  DATE
+  SELECT
+  MULTISELECT
+  BOOLEAN
+  FILE
+  CURRENCY
+}
+
+model AnamnesisResponse {
+  id          String   @id @default(cuid())
+  anamnesisId String
+  fieldId     String
+  value       String?  @db.Text
+  fileUrl     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  anamnesis Anamnesis      @relation(fields: [anamnesisId], references: [id], onDelete: Cascade)
+  field     AnamnesisField @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+
+  @@unique([anamnesisId, fieldId])
+  @@index([anamnesisId])
+}
+
+// ============================================================
+// PLACEHOLDERS FOR FUTURE PHASES
+// ============================================================
+
+model Task {
+  id             String     @id @default(cuid())
+  clientId       String
+  collaboratorId String
+  title          String
+  description    String?    @db.Text
+  type           TaskType   @default(CHECK)
+  status         TaskStatus @default(PENDING)
+  priority       Priority   @default(MEDIUM)
+  dueDate        DateTime?
+  completedAt    DateTime?
+  isRecurring    Boolean    @default(false)
+  recurringRule  Json?
+  supportContent Json?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  client       Client       @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  collaborator Collaborator @relation(fields: [collaboratorId], references: [id])
+
+  @@index([clientId])
+  @@index([status])
+}
+
+enum TaskType {
+  CHECK
+  ACTION
+  REFLECTION
+  UPLOAD
+  READING
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  SKIPPED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model Plan {
+  id             String     @id @default(cuid())
+  clientId       String     @unique
+  collaboratorId String
+  title          String     @default("Plano Financeiro Pessoal")
+  description    String?    @db.Text
+  status         PlanStatus @default(DRAFT)
+  goals          Json?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  client       Client       @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  collaborator Collaborator @relation(fields: [collaboratorId], references: [id])
+
+  @@index([clientId])
+}
+
+enum PlanStatus {
+  DRAFT
+  ACTIVE
+  COMPLETED
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String
+  title     String
+  body      String
+  data      Json?
+  readAt    DateTime?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, readAt])
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  userId    String
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ============================================================
+// CONTENT HUB (Phase 8)
+// ============================================================
+
+model Content {
+  id          String      @id @default(cuid())
+  title       String
+  description String?     @db.Text
+  type        ContentType @default(ARTICLE)
+  url         String?
+  body        String?     @db.Text
+  tags        String[]    @default([])
+  isPublished Boolean     @default(false)
+  createdById String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  createdBy Collaborator @relation(fields: [createdById], references: [id])
+
+  @@index([isPublished])
+  @@index([type])
+}
+
+enum ContentType {
+  ARTICLE
+  VIDEO
+  PDF
+  LINK
+}

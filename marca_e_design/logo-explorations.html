@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marcelle — Logo Explorations v1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,200;1,9..40,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:   #F2EDE4;
+      --teal:    #2A7A6B;
+      --teal-light: #3D9B8A;
+      --salmon:  #D97B5A;
+      --dark:    #1A1A1A;
+      --mid:     #6B6B6B;
+      --light:   #B0A99E;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ───────────────────────────────────── */
+    .page-header {
+      padding: 48px 64px 32px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .page-header h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      color: var(--dark);
+    }
+    .page-header p {
+      font-size: 13px;
+      color: var(--mid);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── TOKENS BAR ───────────────────────────────── */
+    .tokens-bar {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 64px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .token-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--light);
+      margin-right: 8px;
+    }
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--mid);
+    }
+    .swatch-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* ── MAIN GRID ────────────────────────────────── */
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .concept {
+      padding: 56px 48px;
+      border-right: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .concept:last-child { border-right: none; }
+
+    .concept-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .concept-name {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--light);
+    }
+    .concept-tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      border: 1px solid rgba(0,0,0,0.12);
+      color: var(--mid);
+    }
+
+    /* ── LOGO VARIANTS ────────────────────────────── */
+    .logo-variants {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .variant-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .variant-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--light);
+    }
+
+    .logo-display {
+      display: flex;
+      align-items: center;
+      padding: 32px;
+      border-radius: 12px;
+      background: var(--cream);
+      border: 1px solid rgba(0,0,0,0.07);
+      justify-content: center;
+    }
+    .logo-display.dark-bg {
+      background: var(--dark);
+    }
+    .logo-display.white-bg {
+      background: #ffffff;
+    }
+    .logo-display.teal-bg {
+      background: var(--teal);
+    }
+
+    /* ── LOGO WORDMARK STYLES ─────────────────────── */
+    .wordmark-serif {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      color: var(--dark);
+    }
+    .wordmark-sans {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 22px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dark);
+    }
+    .wordmark-sans-medium {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: var(--dark);
+    }
+    .wordmark-instrument {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 30px;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+    }
+
+    .wordmark-light { color: var(--cream) !important; }
+    .wordmark-teal { color: var(--teal) !important; }
+
+    /* ── CONCEPT NOTES ────────────────────────────── */
+    .concept-notes {
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .note-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: 0.02em;
+    }
+    .note-body {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+    .note-tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(42,122,107,0.1);
+      color: var(--teal);
+      margin-right: 4px;
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── ICON SIZES ───────────────────────────────── */
+    .icon-sizes {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 32px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .icon-size-label {
+      font-size: 10px;
+      color: var(--light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── DIVIDER ──────────────────────────────────── */
+    .section-divider {
+      padding: 32px 64px 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--light);
+      margin-bottom: 32px;
+    }
+
+    /* ── APPLICATIONS ROW ─────────────────────────── */
+    .applications {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .app-item {
+      padding: 32px 40px;
+      border-right: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .app-item:last-child { border-right: none; }
+    .app-name {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--light);
+    }
+    .app-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    .page-footer {
+      padding: 32px 64px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .page-footer p {
+      font-size: 12px;
+      color: var(--light);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div>
+    <h1>Marcelle — Logo Explorations</h1>
+    <p style="margin-top:6px">Visual Identity v1 · Abril 2026</p>
+  </div>
+  <div style="text-align:right">
+    <p>Premium · Sofisticado</p>
+    <p style="margin-top:4px">Marca + Nome · Notion/Linear energy</p>
+  </div>
+</div>
+
+<!-- TOKENS -->
+<div class="tokens-bar">
+  <span class="token-label">Tokens</span>
+  <div class="swatch">
+    <div class="swatch-dot" style="background:#F2EDE4; border:1px solid #ccc;"></div>
+    Cream #F2EDE4
+  </div>
+  <div class="swatch">
+    <div class="swatch-dot" style="background:#2A7A6B;"></div>
+    Teal #2A7A6B
+  </div>
+  <div class="swatch">
+    <div class="swatch-dot" style="background:#D97B5A;"></div>
+    Salmon #D97B5A
+  </div>
+  <div class="swatch">
+    <div class="swatch-dot" style="background:#1A1A1A;"></div>
+    Dark #1A1A1A
+  </div>
+</div>
+
+<!-- CONCEPTS GRID -->
+<div class="concepts-grid">
+
+  <!-- ─── CONCEPT A: ARC ─────────────────────────────── -->
+  <div class="concept">
+    <div class="concept-label">
+      <span class="concept-name">Conceito A</span>
+      <span class="concept-tag">Arc · Continuidade</span>
+    </div>
+
+    <div class="logo-variants">
+
+      <!-- Primary on cream -->
+      <div class="variant-row">
+        <span class="variant-label">Principal</span>
+        <div class="logo-display white-bg">
+          <svg width="200" height="52" viewBox="0 0 200 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Arc mark -->
+            <circle cx="26" cy="26" r="16" stroke="#2A7A6B" stroke-width="2.5" fill="none"/>
+            <circle cx="26" cy="26" r="6" fill="#D97B5A"/>
+            <!-- Wordmark -->
+            <text x="54" y="33" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="300" letter-spacing="3" fill="#1A1A1A">marcelle</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Dark bg -->
+      <div class="variant-row">
+        <span class="variant-label">Fundo escuro</span>
+        <div class="logo-display dark-bg">
+          <svg width="200" height="52" viewBox="0 0 200 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="26" cy="26" r="16" stroke="#3D9B8A" stroke-width="2.5" fill="none"/>
+            <circle cx="26" cy="26" r="6" fill="#D97B5A"/>
+            <text x="54" y="33" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="300" letter-spacing="3" fill="#F2EDE4">marcelle</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Icon only sizes -->
+      <div class="variant-row">
+        <span class="variant-label">Ícone isolado</span>
+        <div class="icon-sizes">
+          <div>
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="15" stroke="#2A7A6B" stroke-width="2.5" fill="none"/>
+              <circle cx="24" cy="24" r="5.5" fill="#D97B5A"/>
+            </svg>
+            <div class="icon-size-label" style="margin-top:4px;text-align:center">48px</div>
+          </div>
+          <div>
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="10" stroke="#2A7A6B" stroke-width="2" fill="none"/>
+              <circle cx="16" cy="16" r="3.5" fill="#D97B5A"/>
+            </svg>
+            <div class="icon-size-label" style="margin-top:4px;text-align:center">32px</div>
+          </div>
+          <div>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="5" stroke="#2A7A6B" stroke-width="1.5" fill="none"/>
+              <circle cx="8" cy="8" r="1.8" fill="#D97B5A"/>
+            </svg>
+            <div class="icon-size-label" style="margin-top:4px;text-align:center">16px</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="concept-notes">
+      <div class="note-title">Sobre este conceito</div>
+      <div class="note-body">Círculo aberto com ponto central. Remete a foco, presença e movimento contínuo. O salmon interno cria tensão positiva com o teal. Tipografia Cormorant Garamond Light — o peso serif traz sofisticação sem peso excessivo.</div>
+      <div>
+        <span class="note-tag">Funciona em favicon</span>
+        <span class="note-tag">Atemporal</span>
+        <span class="note-tag">Premium</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CONCEPT B: STEM ────────────────────────────── -->
+  <div class="concept">
+    <div class="concept-label">
+      <span class="concept-name">Conceito B</span>
+      <span class="concept-tag">Stem · Crescimento</span>
+    </div>
+
+    <div class="logo-variants">
+
+      <!-- Primary -->
+      <div class="variant-row">
+        <span class="variant-label">Principal</span>
+        <div class="logo-display white-bg">
+          <svg width="200" height="52" viewBox="0 0 200 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stem mark: vertical line with dot on top -->
+            <line x1="26" y1="40" x2="26" y2="20" stroke="#2A7A6B" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="14" r="6" fill="#2A7A6B"/>
+            <circle cx="26" cy="14" r="2.5" fill="#F2EDE4"/>
+            <!-- Two small branches -->
+            <line x1="26" y1="30" x2="18" y2="24" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="26" y1="30" x2="34" y2="24" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Wordmark -->
+            <text x="52" y="32" font-family="'DM Sans', sans-serif" font-size="19" font-weight="300" letter-spacing="5" fill="#1A1A1A">MARCELLE</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Dark -->
+      <div class="variant-row">
+        <span class="variant-label">Fundo escuro</span>
+        <div class="logo-display dark-bg">
+          <svg width="200" height="52" viewBox="0 0 200 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="26" y1="40" x2="26" y2="20" stroke="#3D9B8A" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="14" r="6" fill="#3D9B8A"/>
+            <circle cx="26" cy="14" r="2.5" fill="#1A1A1A"/>
+            <line x1="26" y1="30" x2="18" y2="24" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="26" y1="30" x2="34" y2="24" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+            <text x="52" y="32" font-family="'DM Sans', sans-serif" font-size="19" font-weight="300" letter-spacing="5" fill="#F2EDE4">MARCELLE</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Teal -->
+      <div class="variant-row">
+        <span class="variant-label">Fundo teal</span>
+        <div class="logo-display teal-bg">
+          <svg width="200" height="52" viewBox="0 0 200 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="26" y1="40" x2="26" y2="20" stroke="#F2EDE4" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="26" cy="14" r="6" fill="#F2EDE4"/>
+            <circle cx="26" cy="14" r="2.5" fill="#2A7A6B"/>
+            <line x1="26" y1="30" x2="18" y2="24" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="26" y1="30" x2="34" y2="24" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+            <text x="52" y="32" font-family="'DM Sans', sans-serif" font-size="19" font-weight="300" letter-spacing="5" fill="#F2EDE4">MARCELLE</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Icon sizes -->
+      <div class="variant-row">
+        <span class="variant-label">Ícone isolado</span>
+        <div class="icon-sizes">
+          <div>
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <line x1="24" y1="40" x2="24" y2="20" stroke="#2A7A6B" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="24" cy="13" r="7" fill="#2A7A6B"/>
+              <circle cx="24" cy="13" r="3" fill="#F2EDE4"/>
+              <line x1="24" y1="30" x2="14" y2="22" stroke="#D97B5A" stroke-width="2" stroke-linecap="round"/>
+              <line x1="24" y1="30" x2="34" y2="22" stroke="#D97B5A" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div class="icon-size-label" style="margin-top:4px;text-align:center">48px</div>
+          </div>
+          <div>
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <line x1="16" y1="28" x2="16" y2="13" stroke="#2A7A6B" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="16" cy="8" r="5" fill="#2A7A6B"/>
+              <circle cx="16" cy="8" r="2" fill="#F2EDE4"/>
+              <line x1="16" y1="20" x2="9" y2="14" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="16" y1="20" x2="23" y2="14" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <div class="icon-size-label" style="margin-top:4px;text-align:center">32px</div>
+          </div>
+          <div>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <line x1="8" y1="14" x2="8" y2="6" stroke="#2A7A6B" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="8" cy="3.5" r="2.5" fill="#2A7A6B"/>
+            </svg>
+            <div class="icon-size-label" style="margin-top:4px;text-align:center">16px</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="concept-notes">
+      <div class="note-title">Sobre este conceito</div>
+      <div class="note-body">Caule com ramificações — crescimento, jornada, método. O ponto teal funciona sozinho como ícone em qualquer tamanho. O salmon nos galhos traz calor sem comprometer a sofisticação. Wordmark em DM Sans uppercase com tracking generoso — muito Linear.</div>
+      <div>
+        <span class="note-tag">Mais narrativo</span>
+        <span class="note-tag">Orgânico</span>
+        <span class="note-tag">Escalável</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CONCEPT C: DIAMOND ─────────────────────────── -->
+  <div class="concept">
+    <div class="concept-label">
+      <span class="concept-name">Conceito C</span>
+      <span class="concept-tag">Diamond · Precisão</span>
+    </div>
+
+    <div class="logo-variants">
+
+      <!-- Primary -->
+      <div class="variant-row">
+        <span class="variant-label">Principal</span>
+        <div class="logo-display white-bg">
+          <svg width="210" height="52" viewBox="0 0 210 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Diamond mark -->
+            <path d="M26 6 L42 26 L26 46 L10 26 Z" fill="#2A7A6B"/>
+            <path d="M26 14 L36 26 L26 38 L16 26 Z" fill="#F2EDE4"/>
+            <circle cx="26" cy="26" r="3.5" fill="#D97B5A"/>
+            <!-- Wordmark Instrument Serif -->
+            <text x="56" y="34" font-family="'Instrument Serif', serif" font-size="30" font-weight="400" letter-spacing="-0.5" fill="#1A1A1A">Marcelle</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Italic variant -->
+      <div class="variant-row">
+        <span class="variant-label">Variação itálico</span>
+        <div class="logo-display white-bg">
+          <svg width="210" height="52" viewBox="0 0 210 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26 6 L42 26 L26 46 L10 26 Z" fill="#2A7A6B"/>
+            <path d="M26 14 L36 26 L26 38 L16 26 Z" fill="#F2EDE4"/>
+            <circle cx="26" cy="26" r="3.5" fill="#D97B5A"/>
+            <text x="56" y="34" font-family="'Instrument Serif', serif" font-size="30" font-weight="400" font-style="italic" letter-spacing="-0.5" fill="#1A1A1A">Marcelle</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Dark -->
+      <div class="variant-row">
+        <span class="variant-label">Fundo escuro</span>
+        <div class="logo-display dark-bg">
+          <svg width="210" height="52" viewBox="0 0 210 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26 6 L42 26 L26 46 L10 26 Z" fill="#3D9B8A"/>
+            <path d="M26 14 L36 26 L26 38 L16 26 Z" fill="#1A1A1A"/>
+            <circle cx="26" cy="26" r="3.5" fill="#D97B5A"/>
+            <text x="56" y="34" font-family="'Instrument Serif', serif" font-size="30" font-weight="400" letter-spacing="-0.5" fill="#F2EDE4">Marcelle</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Icon sizes -->
+      <div class="variant-row">
+        <span class="variant-label">Ícone isolado</span>
+        <div class="icon-sizes">
+          <div>
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <path d="M24 4 L44 24 L24 44 L4 24 Z" fill="#2A7A6B"/>
+              <path d="M24 13 L35 24 L24 35 L13 24 Z" fill="#F2EDE4"/>
+              <circle cx="24" cy="24" r="4" fill="#D97B5A"/>
+            </svg>
+            <div class="icon-size-label" style="margin-top:4px;text-align:center">48px</div>
+          </div>
+          <div>
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 2 L30 16 L16 30 L2 16 Z" fill="#2A7A6B"/>
+              <path d="M16 9 L23 16 L16 23 L9 16 Z" fill="#F2EDE4"/>
+              <circle cx="16" cy="16" r="2.5" fill="#D97B5A"/>
+            </svg>
+            <div class="icon-size-label" style="margin-top:4px;text-align:center">32px</div>
+          </div>
+          <div>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 1 L15 8 L8 15 L1 8 Z" fill="#2A7A6B"/>
+              <path d="M8 4.5 L11.5 8 L8 11.5 L4.5 8 Z" fill="#F2EDE4"/>
+              <circle cx="8" cy="8" r="1.5" fill="#D97B5A"/>
+            </svg>
+            <div class="icon-size-label" style="margin-top:4px;text-align:center">16px</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="concept-notes">
+      <div class="note-title">Sobre este conceito</div>
+      <div class="note-body">Diamante com profundidade — precisão, valor, foco. A forma geométrica pura cria presença forte. O ponto salmon no centro funciona como "coração" da marca. Instrument Serif com kerning negativo — muito editorial, próximo da sofisticação do Notion. A versão itálica adiciona movimento.</div>
+      <div>
+        <span class="note-tag">Mais impactante</span>
+        <span class="note-tag">Geométrico</span>
+        <span class="note-tag">Editorial</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /concepts-grid -->
+
+<!-- APPLICATIONS ROW -->
+<div class="applications">
+
+  <div class="app-item">
+    <span class="app-name">Favicon / App icon</span>
+    <div class="app-preview" style="background:#1A1A1A; gap:16px; padding:20px 24px;">
+      <!-- Show all 3 at favicon size -->
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="10" stroke="#3D9B8A" stroke-width="2" fill="none"/>
+        <circle cx="16" cy="16" r="3.5" fill="#D97B5A"/>
+      </svg>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <line x1="16" y1="28" x2="16" y2="13" stroke="#3D9B8A" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="16" cy="8" r="5" fill="#3D9B8A"/>
+        <circle cx="16" cy="8" r="2" fill="#1A1A1A"/>
+        <line x1="16" y1="20" x2="9" y2="14" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="16" y1="20" x2="23" y2="14" stroke="#D97B5A" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 2 L30 16 L16 30 L2 16 Z" fill="#3D9B8A"/>
+        <path d="M16 9 L23 16 L16 23 L9 16 Z" fill="#1A1A1A"/>
+        <circle cx="16" cy="16" r="2.5" fill="#D97B5A"/>
+      </svg>
+    </div>
+    <span style="font-size:11px;color:var(--light)">A · B · C em 32px</span>
+  </div>
+
+  <div class="app-item">
+    <span class="app-name">OG Image (redes)</span>
+    <div class="app-preview" style="background:var(--cream); flex-direction:column; gap:8px; padding:16px;">
+      <svg width="120" height="30" viewBox="0 0 210 52" fill="none">
+        <path d="M26 6 L42 26 L26 46 L10 26 Z" fill="#2A7A6B"/>
+        <path d="M26 14 L36 26 L26 38 L16 26 Z" fill="#F2EDE4"/>
+        <circle cx="26" cy="26" r="3.5" fill="#D97B5A"/>
+        <text x="56" y="34" font-family="'Instrument Serif', serif" font-size="30" font-weight="400" fill="#1A1A1A">Marcelle</text>
+      </svg>
+      <div style="font-size:10px;color:var(--light);letter-spacing:0.06em;text-align:center;">PLATAFORMA DE ACOMPANHAMENTO</div>
+    </div>
+    <span style="font-size:11px;color:var(--light)">1200×630px sugerido</span>
+  </div>
+
+  <div class="app-item">
+    <span class="app-name">Header de email</span>
+    <div class="app-preview" style="background:#ffffff; padding:16px 20px; justify-content:flex-start;">
+      <svg width="140" height="36" viewBox="0 0 210 52" fill="none">
+        <circle cx="26" cy="26" r="16" stroke="#2A7A6B" stroke-width="2.5" fill="none"/>
+        <circle cx="26" cy="26" r="6" fill="#D97B5A"/>
+        <text x="54" y="33" font-family="'Cormorant Garamond', serif" font-size="26" font-weight="300" letter-spacing="3" fill="#1A1A1A">marcelle</text>
+      </svg>
+    </div>
+    <span style="font-size:11px;color:var(--light)">600px · fundo branco</span>
+  </div>
+
+  <div class="app-item">
+    <span class="app-name">Splash PWA</span>
+    <div class="app-preview" style="background:var(--teal); flex-direction:column; gap:12px; padding:16px;">
+      <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
+        <path d="M24 4 L44 24 L24 44 L4 24 Z" fill="rgba(255,255,255,0.2)"/>
+        <path d="M24 13 L35 24 L24 35 L13 24 Z" fill="rgba(255,255,255,0.15)"/>
+        <circle cx="24" cy="24" r="4" fill="#D97B5A"/>
+      </svg>
+      <div style="font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(242,237,228,0.7);letter-spacing:0.12em;text-transform:uppercase;">Marcelle</div>
+    </div>
+    <span style="font-size:11px;color:var(--light)">Loading screen do app</span>
+  </div>
+
+</div><!-- /applications -->
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p>Marcelle — Logo Explorations v1 · Gerado em abril de 2026</p>
+  <p>3 conceitos · A (Arc) · B (Stem) · C (Diamond)</p>
+</div>
+
+</body>
+</html>
