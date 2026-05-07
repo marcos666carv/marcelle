@@ -1,0 +1,14 @@
+[build]
+  # Configurado para publicar a plataforma (web).
+  # Se quiser publicar o site institucional, troque "web" por "site" abaixo.
+  base = "marcelle-platform/apps/web"
+  command = "pnpm run build"
+  publish = ".next"
+
+[build.environment]
+  # Garante que o Netlify use o Node 22+ e PNPM exigidos pelo seu projeto
+  NODE_VERSION = "22"
+  PNPM_FLAGS = "--shamefully-hoist"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
