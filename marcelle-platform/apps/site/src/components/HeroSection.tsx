@@ -117,31 +117,26 @@ export function HeroSection() {
   const bgScale = useTransform(progress, [0, 1], [1, 1.08])
 
   return (
-    <section ref={containerRef} id="hero" className="relative min-h-[200vh] bg-sage">
-      <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex flex-col bg-sage overflow-hidden">
+      
+      {/* Right panel — sage darker */}
+      <motion.div
+        className="absolute right-0 top-0 w-[52%] h-full bg-linen"
+        initial={{ x: 60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+      />
 
-        {/* Right panel — sage darker */}
-        <motion.div
-          className="absolute right-0 top-0 w-[52%] h-full bg-linen"
-          style={{ scale: bgScale }}
-          initial={{ x: 60, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-        />
+      {/* Electric blue triangle accent */}
+      <div className="absolute right-20 top-0">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+          <polygon points="0,0 56,0 56,56" fill="#1A3CF5" />
+        </svg>
+      </div>
 
-        {/* Electric blue triangle accent */}
-        <div className="absolute right-20 top-0">
-          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-            <polygon points="0,0 56,0 56,56" fill="#1A3CF5" />
-          </svg>
-        </div>
-
-        {/* Main content */}
-        <motion.div
-          className="relative z-10 flex-1 flex items-center"
-          style={{ opacity: textOpacity, y: textY }}
-        >
-          <div className="w-full px-6 md:px-16 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* Main content */}
+      <div className="relative z-10 flex-1 flex items-center pt-24 pb-16">
+        <div className="w-full px-6 md:px-16 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
             {/* Left — text */}
             <div>
@@ -250,35 +245,14 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Scroll hint */}
-        <motion.div
-          className="absolute bottom-16 left-6 md:left-16 lg:left-24 flex items-center gap-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-          style={{ opacity: useTransform(progress, [0, 0.15], [1, 0]) }}
-        >
-          <motion.div
-            className="w-px h-7 bg-teal/25"
-            animate={{ scaleY: [1, 0.4, 1] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          />
-          <span className="text-xs text-teal/30 lowercase tracking-widest">role para ver</span>
-        </motion.div>
       </div>
 
-      {/* Transition reveal */}
-      <motion.div
-        className="absolute bottom-0 left-0 right-0 h-[35vh] flex items-center px-6 md:px-16 lg:px-24"
-        style={{
-          opacity: useTransform(progress, [0.55, 0.88], [0, 1]),
-          y: useTransform(progress, [0.55, 0.88], [40, 0]),
-        }}
-      >
+      {/* Transition text no fim do Hero */}
+      <div className="relative z-10 w-full flex items-center px-6 md:px-16 lg:px-24 py-16">
         <p className="font-sans text-3xl md:text-4xl text-teal font-bold italic">
           a ordem que você precisa começa aqui.
         </p>
-      </motion.div>
+      </div>
     </section>
   )
 }
