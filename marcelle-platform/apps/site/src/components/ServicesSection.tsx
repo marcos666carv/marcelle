@@ -85,7 +85,7 @@ export function ServicesSection() {
 
         {/* Cards — 4 colunas lado a lado */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border/30 rounded-3xl overflow-hidden"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border/30 rounded-3xl overflow-hidden"
           variants={container}
           initial="hidden"
           whileInView="show"
