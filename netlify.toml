@@ -1,7 +1,7 @@
 [build]
   # Configurado para publicar a plataforma (web).
   # Se quiser publicar o site institucional, troque "web" por "site" abaixo.
-  base = "marcelle-platform/apps/web"
+  base = "marcelle-platform/apps/site"
   command = "pnpm run build"
   publish = ".next"
 
