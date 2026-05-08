@@ -121,25 +121,27 @@ export function HeroSection() {
       
       {/* Right panel — sage darker */}
       <motion.div
-        className="absolute right-0 top-0 w-[52%] h-full bg-linen"
+        className="absolute right-0 top-0 hidden md:block md:w-[52%] h-full bg-linen"
         initial={{ x: 60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
       />
 
       {/* Electric blue triangle accent */}
-      <div className="absolute right-20 top-0">
+      <div className="absolute right-20 top-0 hidden md:block">
         <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
           <polygon points="0,0 56,0 56,56" fill="#1A3CF5" />
         </svg>
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 flex-1 flex items-center pt-24 pb-16">
-        <div className="w-full px-6 md:px-16 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 flex-1 flex flex-col pt-24">
+        
+        {/* Top area: The main grid */}
+        <div className="w-full px-6 md:px-16 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center flex-1">
 
             {/* Left — text */}
-            <div>
+            <div className="py-8 md:py-0">
               {/* Logo mark inline */}
               <motion.div
                 className="flex items-center gap-3 mb-8"
@@ -210,7 +212,7 @@ export function HeroSection() {
                   { value: '100%', label: 'humanizado' },
                 ].map((s) => (
                   <div key={s.label}>
-                    <p className="font-sans text-2xl font-bold text-teal">{s.value}</p>
+                     <p className="font-sans text-2xl font-bold text-teal">{s.value}</p>
                     <p className="text-xs text-teal/40 lowercase mt-0.5">{s.label}</p>
                   </div>
                 ))}
@@ -226,32 +228,32 @@ export function HeroSection() {
             >
               <PhotoWithGeometry />
             </motion.div>
-          </div>
-        </motion.div>
+        </div>
 
-        {/* Bottom marquee strip */}
-        <div className="relative z-10 border-y border-teal/10 bg-sage py-3 overflow-hidden">
-          <div className="marquee-track select-none">
-            {[...marqueeItems, ...marqueeItems].map((item, i) => (
-              <span
-                key={i}
-                className={`px-6 text-sm font-medium whitespace-nowrap ${
-                  item === '·' ? 'text-coral' : 'text-teal/50 lowercase'
-                }`}
-              >
-                {item}
-              </span>
-            ))}
+        {/* Bottom area: Constrained to the left (green) side */}
+        <div className="w-full md:w-[48%] flex flex-col justify-end pb-12 pt-16 md:pt-0">
+          <div className="px-6 md:px-16 lg:px-24 mb-6">
+            <p className="font-sans text-3xl md:text-4xl text-teal font-bold italic">
+              a ordem que você precisa começa aqui.
+            </p>
+          </div>
+          
+          <div className="border-y border-teal/10 py-3 overflow-hidden w-full">
+            <div className="marquee-track select-none">
+              {[...marqueeItems, ...marqueeItems].map((item, i) => (
+                <span
+                  key={i}
+                  className={`px-6 text-sm font-medium whitespace-nowrap ${
+                    item === '·' ? 'text-coral' : 'text-teal/50 lowercase'
+                  }`}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-      </div>
-
-      {/* Transition text no fim do Hero */}
-      <div className="relative z-10 w-full flex items-center px-6 md:px-16 lg:px-24 py-16">
-        <p className="font-sans text-3xl md:text-4xl text-teal font-bold italic">
-          a ordem que você precisa começa aqui.
-        </p>
       </div>
     </section>
   )
