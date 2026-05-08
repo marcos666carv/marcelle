@@ -31,9 +31,8 @@ export function Navbar() {
     >
       <div className="px-6 md:px-16 lg:px-24 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
-          <img src="/logo-simbolo-v2.svg" alt="mb" className="h-7 w-auto" />
-          <img src="/logo-v2.svg" alt="marcelle breciani" className="h-4 w-auto opacity-80 group-hover:opacity-100 transition-opacity" />
+        <a href="#" className="flex items-center group">
+          <img src="/logo-v2.svg" alt="marcelle breciani" className="h-8 w-auto opacity-90 group-hover:opacity-100 transition-opacity" />
         </a>
 
         {/* Desktop nav */}
