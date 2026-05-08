@@ -4,6 +4,8 @@ const navLinks = [
   { href: '#depoimentos', label: 'depoimentos' },
   { href: '#faq', label: 'faq' },
   { href: '#contato', label: 'contato' },
+  { href: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000', label: 'acesso cliente' },
+  { href: (process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000') + '/admin', label: 'acesso admin' },
 ]
 
 const tagline = [
@@ -39,7 +41,7 @@ export function Footer() {
           {/* Brand */}
           <div className="max-w-xs">
             <div className="flex items-center gap-3 mb-4">
-              <img src="/logo-v2.svg" alt="marcelle breciani" className="h-9 w-auto brightness-0 invert opacity-70" />
+              <img src="/logo-assinatura-v2.svg" alt="marcelle breciani" className="h-6 w-auto brightness-0 invert opacity-70" />
             </div>
             <p className="text-sm text-cream/35 lowercase leading-relaxed">
               planejamento financeiro humanizado — transformando sua relação com o dinheiro desde dentro.
@@ -50,7 +52,7 @@ export function Footer() {
           <nav className="flex flex-col gap-2">
             {navLinks.map((l) => (
               <a
-                key={l.href}
+                key={l.label}
                 href={l.href}
                 className="text-sm text-cream/40 hover:text-cream transition-colors duration-200 lowercase"
               >

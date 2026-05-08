@@ -13,7 +13,7 @@ const marqueeItems = [
 // Brand geometric cluster: fills the right column around the photo
 function PhotoWithGeometry() {
   return (
-    <div className="relative w-[420px] h-[420px]">
+    <div className="relative w-full max-w-[600px] aspect-square mx-auto">
       {/* ── Photo card (nova imagem com geometria embutida) ── */}
       <div className="absolute inset-0">
         <Image

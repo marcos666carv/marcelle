@@ -32,7 +32,7 @@ export function Navbar() {
       <div className="px-6 md:px-16 lg:px-24 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center group">
-          <img src="/logo-v2.svg" alt="marcelle breciani" className="h-8 w-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+          <img src="/logo-assinatura-v2.svg" alt="marcelle breciani" className="h-6 w-auto opacity-90 group-hover:opacity-100 transition-opacity" />
         </a>
 
         {/* Desktop nav */}
