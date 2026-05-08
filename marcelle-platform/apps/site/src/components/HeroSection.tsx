@@ -13,89 +13,26 @@ const marqueeItems = [
 // Brand geometric cluster: fills the right column around the photo
 function PhotoWithGeometry() {
   return (
-    <div className="relative w-[300px] h-[420px]">
-
-      {/* ── Decorative triangles scattered around the card ── */}
-
-      {/* Top-left: blue cluster */}
-      <div className="absolute -top-10 -left-10">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-          <polygon points="0,0 40,0 0,40" fill="#1A3CF5" />
-          <polygon points="40,0 80,0 40,40" fill="#1A3CF5" opacity="0.55" />
-          <polygon points="0,40 40,40 0,80" fill="#1A3CF5" opacity="0.55" />
-          <polygon points="40,40 80,40 40,80" fill="#1A3CF5" opacity="0.25" />
-        </svg>
-      </div>
-
-      {/* Top-center: hotpink pair */}
-      <div className="absolute -top-8 left-[28%]">
-        <svg width="44" height="84" viewBox="0 0 44 84" fill="none">
-          <polygon points="0,0 44,0 0,42" fill="#E878D8" opacity="0.9" />
-          <polygon points="0,42 44,42 0,84" fill="#E878D8" opacity="0.45" />
-        </svg>
-      </div>
-
-      {/* Right edge: cream triangles */}
-      <div className="absolute top-[20%] -right-9">
-        <svg width="36" height="108" viewBox="0 0 36 108" fill="none">
-          <polygon points="0,0 36,0 36,36" fill="#EDE8E0" />
-          <polygon points="0,36 36,36 36,72" fill="#EDE8E0" opacity="0.55" />
-          <polygon points="0,72 36,72 36,108" fill="#EDE8E0" opacity="0.25" />
-        </svg>
-      </div>
-
-      {/* Bottom-left: mint cluster */}
-      <div className="absolute -bottom-8 -left-10">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-          <polygon points="0,0 40,0 0,40" fill="#00E676" />
-          <polygon points="40,0 80,0 40,40" fill="#00E676" opacity="0.55" />
-          <polygon points="0,40 40,40 0,80" fill="#00E676" opacity="0.55" />
-          <polygon points="40,40 80,40 40,80" fill="#00E676" opacity="0.25" />
-        </svg>
-      </div>
-
-      {/* Bottom-right: coral cluster */}
-      <div className="absolute -bottom-8 -right-8">
-        <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-          <polygon points="0,0 35,0 0,35" fill="#E8341A" />
-          <polygon points="35,0 70,0 35,35" fill="#E8341A" opacity="0.55" />
-          <polygon points="0,35 35,35 0,70" fill="#E8341A" opacity="0.55" />
-          <polygon points="35,35 70,35 35,70" fill="#E8341A" opacity="0.25" />
-        </svg>
-      </div>
-
-      {/* Top-right corner accent */}
-      <div className="absolute -top-3 -right-3">
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-          <polygon points="30,0 30,30 0,30" fill="#1A3CF5" />
-        </svg>
-      </div>
-
-      {/* ── Photo card ── */}
-      <div className="absolute inset-0 overflow-hidden" style={{ borderRadius: '2px' }}>
+    <div className="relative w-[420px] h-[420px]">
+      {/* ── Photo card (nova imagem com geometria embutida) ── */}
+      <div className="absolute inset-0">
         <Image
-          src="/marcelle.png"
+          src="/marcelle-hero.png"
           alt="Marcelle Breciani — planejadora financeira"
           fill
-          className="object-cover object-top"
+          className="object-contain"
           priority
         />
-        {/* Bottom gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-teal/70 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          <p className="text-white text-xs font-semibold lowercase tracking-widest">marcelle breciani</p>
-          <p className="text-white/60 text-xs lowercase">planejadora financeira</p>
-        </div>
       </div>
 
       {/* Tag badge */}
-      <div className="absolute -right-5 top-8 bg-white px-3 py-1.5 shadow-lg border border-border/30 flex items-center gap-1.5" style={{ borderRadius: '2px' }}>
+      <div className="absolute right-0 top-12 bg-white px-3 py-1.5 shadow-lg border border-border/30 flex items-center gap-1.5" style={{ borderRadius: '2px' }}>
         <span className="w-1.5 h-1.5 rounded-full bg-coral animate-pulse" />
         <span className="text-xs font-semibold text-teal">@marcellebreciani</span>
       </div>
 
       {/* Result pill */}
-      <div className="absolute -bottom-5 -right-5 bg-teal px-4 py-3 shadow-xl" style={{ borderRadius: '2px' }}>
+      <div className="absolute bottom-4 right-4 bg-teal px-4 py-3 shadow-xl" style={{ borderRadius: '2px' }}>
         <p className="text-white text-xs lowercase font-medium">transformação real</p>
         <p className="text-salmon text-lg font-bold">+200 clientes</p>
       </div>

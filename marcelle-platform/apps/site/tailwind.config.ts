@@ -60,9 +60,9 @@ const config: Config = {
         'on-error-container': '#93000a',
       },
       fontFamily: {
-        sans: ['var(--font-dm-sans)', 'DM Sans', 'sans-serif'],
-        serif: ['var(--font-dm-sans)', 'DM Sans', 'sans-serif'],
-        display: ['var(--font-dm-sans)', 'DM Sans', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Urbanist', 'sans-serif'],
+        serif: ['var(--font-sans)', 'Urbanist', 'sans-serif'],
+        display: ['var(--font-sans)', 'Urbanist', 'sans-serif'],
       },
       borderRadius: {
         DEFAULT: '8px',
