@@ -279,7 +279,7 @@ function OrbitDiagram({ active }: { active: boolean }) {
         }}
       >
         <img
-          src="/logo-simbolo.svg"
+          src="/logo-simbolo-v2.svg"
           alt="mb"
           className="w-full h-full object-contain brightness-0 invert opacity-70"
         />

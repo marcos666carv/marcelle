@@ -39,8 +39,8 @@ export function Footer() {
           {/* Brand */}
           <div className="max-w-xs">
             <div className="flex items-center gap-3 mb-4">
-              <img src="/logo-simbolo.svg" alt="mb" className="h-8 w-auto brightness-0 invert opacity-70" />
-              <img src="/logo-wordmark.svg" alt="marcelle breciani" className="h-3.5 w-auto brightness-0 invert opacity-50" />
+              <img src="/logo-simbolo-v2.svg" alt="mb" className="h-8 w-auto brightness-0 invert opacity-70" />
+              <img src="/logo-v2.svg" alt="marcelle breciani" className="h-3.5 w-auto brightness-0 invert opacity-50" />
             </div>
             <p className="text-sm text-cream/35 lowercase leading-relaxed">
               planejamento financeiro humanizado — transformando sua relação com o dinheiro desde dentro.

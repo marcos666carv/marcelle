@@ -9,35 +9,35 @@ const testimonials = [
     role: 'designer, 32 anos',
     text: 'eu achava que meu problema com dinheiro era falta de disciplina. depois de trabalhar com a marcelle, entendi que era medo. essa mudança de perspectiva mudou tudo.',
     result: 'quitou r$ 28k em dívidas em 14 meses',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+    color: '#E55A4B', // coral
   },
   {
     name: 'fernanda m.',
     role: 'professora, 41 anos',
     text: 'nunca imaginei que eu poderia juntar dinheiro para uma reserva de emergência. hoje tenho 6 meses de reserva e estou começando a investir.',
     result: 'construiu reserva de r$ 18k',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80',
+    color: '#051a16', // darker teal / blackish
   },
   {
     name: 'carla r.',
     role: 'empreendedora, 38 anos',
     text: 'a marcelle conseguiu traduzir questões financeiras complexas de forma simples e humana. sem aquela pressão de que você precisa ser perfeita.',
     result: 'lucro cresceu 40% após reorganização',
-    image: 'https://images.unsplash.com/photo-1531123897727-8f129e1bfa82?auto=format&fit=crop&w=600&q=80',
+    color: '#1A3CF5', // electric blue
   },
   {
     name: 'juliana t.',
     role: 'enfermeira, 29 anos',
     text: 'cheguei endividada e com muito medo de olhar para as contas. em 8 meses, não só quitei as dívidas como finalmente consegui comprar meu apartamento.',
     result: 'realizou o sonho do apartamento próprio',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+    color: '#E57A5B', // salmon
   },
   {
     name: 'beatriz l.',
     role: 'advogada, 35 anos',
     text: 'ganhava bem e não entendia por que nunca sobrava nada. o processo me ajudou a identificar gastos invisíveis e criar um estilo de vida financeiro que faz sentido.',
     result: 'reduziu gastos em 35% sem sofrimento',
-    image: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&w=600&q=80',
+    color: '#0E362C', // medium dark teal
   },
 ]
 
@@ -112,22 +112,16 @@ export function TestimonialsSection() {
         {testimonials.map((t, i) => (
           <div 
             key={i} 
-            className="relative flex-shrink-0 w-[85vw] sm:w-[380px] h-[540px] rounded-3xl overflow-hidden snap-center group bg-[#051a16]"
+            className="relative flex-shrink-0 w-[85vw] sm:w-[380px] h-[540px] rounded-3xl overflow-hidden snap-center group transition-transform duration-500 hover:scale-[1.02]"
+            style={{ backgroundColor: t.color }}
           >
-            {/* Background Image */}
-            <img 
-              src={t.image} 
-              alt={t.name} 
-              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" 
-            />
-            
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-teal via-teal/80 to-transparent" />
+            {/* Subtle Gradient Overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80" />
             
             {/* Content */}
             <div className="absolute inset-0 p-8 flex flex-col justify-end">
               {/* Quote Icon */}
-              <svg className="w-8 h-8 text-coral mb-5 opacity-90" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-cream/30 mb-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
               
@@ -141,8 +135,8 @@ export function TestimonialsSection() {
               </div>
 
               {/* Result Badge */}
-              <div className="mt-4 self-start bg-coral/20 backdrop-blur-sm border border-coral/30 px-3 py-1.5 rounded-lg">
-                <p className="text-xs font-bold text-coral lowercase">{t.result}</p>
+              <div className="mt-4 self-start bg-black/20 backdrop-blur-sm border border-white/10 px-3 py-1.5 rounded-lg">
+                <p className="text-xs font-bold text-cream lowercase">{t.result}</p>
               </div>
             </div>
           </div>

@@ -149,7 +149,7 @@ export function HeroSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <img src="/logo-simbolo.svg" alt="mb" className="h-8 w-auto" />
+                <img src="/logo-simbolo-v2.svg" alt="mb" className="h-8 w-auto" />
                 <span className="text-xs font-semibold tracking-widest text-teal/50 lowercase">
                   planejamento financeiro humanizado
                 </span>
@@ -232,12 +232,6 @@ export function HeroSection() {
 
         {/* Bottom area: Constrained to the left (green) side */}
         <div className="w-full md:w-[48%] flex flex-col justify-end pb-12 pt-16 md:pt-0">
-          <div className="px-6 md:px-16 lg:px-24 mb-6">
-            <p className="font-sans text-3xl md:text-4xl text-teal font-bold italic">
-              a ordem que você precisa começa aqui.
-            </p>
-          </div>
-          
           <div className="border-y border-teal/10 py-3 overflow-hidden w-full">
             <div className="marquee-track select-none">
               {[...marqueeItems, ...marqueeItems].map((item, i) => (
